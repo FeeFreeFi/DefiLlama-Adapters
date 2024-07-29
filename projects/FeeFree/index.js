@@ -14,7 +14,7 @@ const config = {
   base: {
     pool: "0xcdE68374C7AB5cf1DB8673D3Fc80937CC499E3a0",
     router: "0x0Fee2fd9EBFD6B0f803FcDeF0230d53dEF910900",
-    fromBlock: 17714008,
+    fromBlock: 17713836,
     eventAbi: EVENT_ABI,
   }
 }
@@ -24,10 +24,10 @@ module.exports = {
 }
 
 Object.keys(config).forEach(chain => {
-  const { pool, fromBlock, } = config[chain]
+  const { pool, fromBlock, eventAbi } = config[chain]
   module.exports[chain] = {
     tvl: async (api) => {
-      const logs = await getLogs2({ api, factory: pool, eventAbi: EVENT_ABI, fromBlock, })
+      const logs = await getLogs2({ api, factory: pool, eventAbi, fromBlock, })
       const tokens = logs.map(i => [i.currency0, i.currency1]).flat()
       return sumTokens2({ api, owner: pool, tokens, })
     }
