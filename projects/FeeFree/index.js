@@ -1,18 +1,21 @@
 const { getLogs2 } = require('../helper/cache/getLogs')
 const { sumTokens2 } = require('../helper/unwrapLPs')
 
-const EVENT_ABI = 'event Initialize(bytes32 id, address indexed currency0, address indexed currency1, uint24 fee, int24 tickSpacing, address hooks)'
+const LEGACY_EVENT_ABI = 'event Initialize(bytes32 id, address indexed currency0, address indexed currency1, uint24 fee, int24 tickSpacing, address hooks)'
+const EVENT_ABI = 'event Initialize(bytes32 id, address indexed currency0, address indexed currency1, uint24 fee, int24 tickSpacing, address hooks, uint160 sqrtPriceX96, int24 tick)'
 
 const config = {
   zora: {
     pool: "0xB43287b2106BC044F07aE674794f5492E851d3dC",
     router: "0x0Fee97363deEFBE4De038D437D805A98dbEbA400",
     fromBlock: 13704184,
+    eventAbi: LEGACY_EVENT_ABI,
   },
   base: {
-    pool: "0xc08304a5300D9a2310A603b8D7fB8470f752947F",
-    router: "0x0Fee76f15DE74A5211e5Bc2aBF95394d7f50C400",
-    fromBlock: 14089843,
+    pool: "0xcdE68374C7AB5cf1DB8673D3Fc80937CC499E3a0",
+    router: "0x0Fee2fd9EBFD6B0f803FcDeF0230d53dEF910900",
+    fromBlock: 17714008,
+    eventAbi: EVENT_ABI,
   }
 }
 
